@@ -5,15 +5,17 @@ import matplotlib.pyplot as plt
 
 
 def app():
-    st.title("Add dataset, image or ")        
+    st.title("Home")        
             
+    
+    
     files = st.file_uploader("Upload a Dataset", type=["jpeg","csv","json"], key="files", accept_multiple_files=True)
     
     pie_chart = st.empty()
     
     
     def json_file(file):
-        coco = COCO(annotation_file = 'instances_train.json')
+        coco = COCO(annotation_file = file)
         coco_categories = coco.dataset['categories'][1:]
         nb_anns_per_cat = {cat['name']: len(coco.getAnnIds(catIds=[cat['id']])) for cat in coco_categories}
 
@@ -46,4 +48,4 @@ def app():
             st.write(file.type)
             st.image(file)
         elif file.type == "application/json":
-            json_file(file)
+            json_file(file.name)

@@ -1,0 +1,67 @@
+[2022-01-28 20:21:35,854] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-01-28 20:21:53,601] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:21:53] "GET / HTTP/1.1" 200 -
+[2022-01-28 20:21:53,745] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:21:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2022-01-28 20:24:09,216] INFO in inference: ---recieving request
+[2022-01-28 20:24:09,222] INFO in inference: ---filename: speedup.png
+[2022-01-28 20:24:09,224] INFO in inference: ---Loading model...
+[2022-01-28 20:24:20,503] INFO in inference: ---Model loaded.
+[2022-01-28 20:24:20,504] INFO in inference: ---Processing /tmp/speedup.png
+[2022-01-28 20:24:20,540] INFO in inference: ---Detecting...
+[2022-01-28 20:24:20,906] INFO in inference: ---Tracking...
+[2022-01-28 20:24:20,906] ERROR in app: Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/eisti/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/eisti/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/eisti/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/eisti/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/eisti/surfnet/src/serving/app.py", line 32, in index
+    return handle_post_request()
+  File "/home/eisti/surfnet/src/serving/inference.py", line 92, in handle_post_request
+    filtered_results = track(config_track)
+  File "/home/eisti/surfnet/src/serving/inference.py", line 136, in track
+    results = track_video(reader, iter(detections), args, engine, transition_variance, observation_variance, display)
+  File "/home/eisti/surfnet/src/tracking/track_video.py", line 88, in track_video
+    frame0 = next(reader)
+  File "/home/eisti/surfnet/src/tools/video_readers.py", line 138, in __next__
+    raise StopIteration
+StopIteration
+[2022-01-28 20:24:20,908] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:24:20] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+[2022-01-28 20:25:33,781] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-01-28 20:26:22,581] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:26:22] "GET / HTTP/1.1" 200 -
+[2022-01-28 20:26:43,245] INFO in inference: ---recieving request
+[2022-01-28 20:26:46,599] INFO in inference: ---filename: S.W.A.T.2017.S05E10.720p.HDTV.x264-SYNCOPY.mkv
+[2022-01-28 20:26:47,995] INFO in inference: ---Loading model...
+[2022-01-28 20:26:48,486] INFO in inference: ---Model loaded.
+[2022-01-28 20:26:48,487] INFO in inference: ---Processing /tmp/S.W.A.T.2017.S05E10.720p.HDTV.x264-SYNCOPY.mkv
+[2022-01-28 20:26:48,594] INFO in inference: ---Detecting...
+[2022-01-28 20:36:36,468] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-01-28 20:37:10,200] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:37:10] "GET / HTTP/1.1" 200 -
+[2022-01-28 20:37:18,332] INFO in inference: ---recieving request
+[2022-01-28 20:37:18,451] INFO in inference: ---filename: yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:37:18,476] INFO in inference: ---Loading model...
+[2022-01-28 20:37:18,701] INFO in inference: ---Model loaded.
+[2022-01-28 20:37:18,702] INFO in inference: ---Processing /tmp/yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:37:18,722] INFO in inference: ---Detecting...
+[2022-01-28 20:37:18,846] INFO in inference: ---recieving request
+[2022-01-28 20:37:18,936] INFO in inference: ---filename: yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:37:18,970] INFO in inference: ---Loading model...
+[2022-01-28 20:37:19,300] INFO in inference: ---Model loaded.
+[2022-01-28 20:37:19,303] INFO in inference: ---Processing /tmp/yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:37:19,338] INFO in inference: ---Detecting...
+[2022-01-28 20:39:16,366] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:39:16] "GET / HTTP/1.1" 200 -
+[2022-01-28 20:39:16,880] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:39:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2022-01-28 20:42:26,447] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-01-28 20:42:30,341] INFO in inference: ---recieving request
+[2022-01-28 20:42:30,392] INFO in inference: ---filename: yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:42:30,422] INFO in inference: ---Loading model...
+[2022-01-28 20:42:30,652] INFO in inference: ---Model loaded.
+[2022-01-28 20:42:30,653] INFO in inference: ---Processing /tmp/yt5s.com-LIndonesie_veut_nettoyer_la_riviere_la_plus_polluee_du_monde.mp4
+[2022-01-28 20:42:30,671] INFO in inference: ---Detecting...
+[2022-01-28 20:49:44,491] INFO in inference: ---Tracking...
+[2022-01-28 20:50:03,936] INFO in inference: ---Filtering...
+[2022-01-28 20:50:03,955] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 20:50:03] "POST / HTTP/1.1" 200 -
+[2022-01-28 22:46:13,067] INFO in _internal: 127.0.0.1 - - [28/Jan/2022 22:46:13] "GET / HTTP/1.1" 200 -
