@@ -7,12 +7,11 @@ from .tools.video_readers import IterableFrameReader
 from .tools.misc import load_model
 from .tracking.trackers import get_tracker
 import torch
-
+import json
 from .tracking.track_video import track_video, Display
 
 from deep_learning_power_measure.power_measure import experiment, parsers
 import time
-
 
 def main(args, display, demo=False, demo_container=None, video_raw=None, video_name=None):
     if not demo:
@@ -102,6 +101,18 @@ def main(args, display, demo=False, demo_container=None, video_raw=None, video_n
         print('Energy system consumed: {} Wh'.format(round((experiment.joules_to_wh(exp_result.get_info("psys_power"))),2)))
         print('Energy GPU  consumed: {} Wh'.format(round((experiment.joules_to_wh(exp_result.get_info("nvidia_draw_absolute"))),2)))
 
+        json_consumption_report = {
+            "duration_seconds": e_time,
+            "mean_cpu_power_W": round((experiment.joules_to_wh(exp_result.get_info("total_cpu_power"))) / (e_time/ 3600),2),
+            "mean_system_power_W": round((experiment.joules_to_wh(exp_result.get_info("psys_power"))) / (e_time/ 3600),2),
+            "mean_gpu_power_W": round((experiment.joules_to_wh(exp_result.get_info("nvidia_draw_absolute"))) / (e_time / 3600), 2),
+            "energy_cpu_consumed_Wh": round((experiment.joules_to_wh(exp_result.get_info("total_cpu_power"))),2),
+            "energy_system_consumed_Wh": round((experiment.joules_to_wh(exp_result.get_info("psys_power"))),2),
+            "energy_gpu_consumed_Wh": round((experiment.joules_to_wh(exp_result.get_info("nvidia_draw_absolute"))),2)
+        }
+        
+        with open('/home/eisti/Perso/Projets/ia-pau-4/IA-Pau-4/app/tmp/data/consumption_report.json', 'w') as outfile:
+            json.dump(json_consumption_report, outfile)
         
         
         

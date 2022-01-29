@@ -285,6 +285,7 @@ def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True,
 					np.reshape(np.array(class_count), (1,10)),
     				columns=(dict_class[i] for i in range(10)))
 				df1.index = ['Count']
+				df1.to_csv('/home/eisti/Perso/Projets/ia-pau-4/IA-Pau-4/app/tmp/data/current_detection_analysis.csv')
 				# df2 = pd.DataFrame(
 				# 	np.reshape(np.array(class_count[5:]), (1,5)),
     			# 	columns=(dict_class[i+5] for i in range(5)))
