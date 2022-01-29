@@ -1,23 +1,18 @@
-from distutils.command.upload import upload
 import streamlit as st
-import pandas as pd
+import requests
+
+URL_PREPROCESS_VIDEO = "mon_url"
 
 def app():
-    st.title("Add dataset, image or ")        
+    st.title("Video upload !")        
             
-    files = st.file_uploader("Upload a Dataset", type=["jpeg","csv","json"], key="files", accept_multiple_files=True)
+    video_file = st.file_uploader("Upload the video", type=["mp4"], key="files")
     
-    with st.container():
-        for file in files:
-            if file.type == "text/csv":
-                df = pd.read_csv(file)
-                st.dataframe(df)
-                """
-                le code sur le dataframe à faire
-                """
-            elif file.type == "image/jpeg":
-                st.write(file.type)
-                st.image(file)
-            else:
-                st.write(file.type)
+    if video_file is not None:
+        files = {"file" : video_file}
+        json_response = requests.post(url=URL_PREPROCESS_VIDEO, files=files)
+        
+        st.video(video_file.read())
+    
+
     
