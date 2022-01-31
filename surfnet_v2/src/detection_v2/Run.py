@@ -48,7 +48,7 @@ t0 = time.time()
 
 def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True, demo=False, demo_container=None, video_raw=None, video_name=None):
 	CLASSES = [0,1,2,3,5,6,7,8,9]
-	threshold_detection = 0.25
+	threshold_detection = 0.20
 	class_count = []
 	for i in range(0,10):
 		class_count.append(0)
@@ -64,7 +64,7 @@ def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True,
 	# instantiate our centroid tracker, then initialize a list to store
 	# each of our dlib correlation trackers, followed by a dictionary to
 	# map each unique object ID to a TrackableObject
-	ct = CentroidTracker(maxDisappeared=10, maxDistance=50)
+	ct = CentroidTracker(maxDisappeared=10, maxDistance=400)
 	trackers = []
 	trackableObjects = {}
 
@@ -83,9 +83,9 @@ def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True,
 	if config.Thread:
 		vs = thread.ThreadingClass(config.url)
 	
-	if generate_vid:
-		fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-		writer = cv2.VideoWriter(output_vid, fourcc, 30,(W, H), True)
+	# if generate_vid:
+	# 	fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+	# 	writer = cv2.VideoWriter(output_vid, fourcc, 30,(W, H), True)
 
 	model = DetectMultiBackend("/home/eisti/Perso/Projets/ia-pau-4/IA-Pau-4/surfnet_v2/best.pt", device="cpu") 
 	framepack = []
@@ -99,9 +99,13 @@ def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True,
 		(H, W) = frame.shape[:2]
 
 	if generate_vid:
-		writer = cv2.VideoWriter(f'/home/eisti/Perso/Projets/ia-pau-4/IA-Pau-4/app/tmp/output/{video_name.split(".")[0]}.avi',
-                          cv2.VideoWriter_fourcc(*'MJPG'),
-                          10, (640,384))
+		writer = cv2.VideoWriter(f'/home/eisti/Perso/Projets/ia-pau-4/IA-Pau-4/app/tmp/output/{video_name.split(".")[0]}.webm',
+						  #cv2.VideoWriter_fourcc(*'H264'),
+                          #cv2.VideoWriter_fourcc(*"mp4v"),
+                          #0x00000021,
+                          cv2.VideoWriter_fourcc(*'vp80'),
+                          #cv2.VideoWriter_fourcc(*'MJPG'),
+                          20, (640,384))
 
 	while True:
 		# grab the next frame and handle if we are reading from either
@@ -274,7 +278,7 @@ def prep(input_vid, skip_frames=4, output_vid="test_vid_own", generate_vid=True,
         0: 'Sheet / tarp / plastic bag / fragment'}
 		
 		if generate_vid:
-			writer.write(frame)
+			writer.write(cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
     
 		if demo:
 			with demo_container.container():

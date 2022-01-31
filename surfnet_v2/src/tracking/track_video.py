@@ -83,6 +83,6 @@ def associate_detections_to_trackers(detections_for_frame, trackers, flow01, con
 
 def track_video(video_filename, demo=False, demo_container=None, video_raw=None, video_name=None):
     
-    (results,x) = prep(video_filename,4, demo=demo, demo_container=demo_container, video_raw=video_raw, video_name=video_name)
+    (results,x) = prep(video_filename,3, demo=demo, demo_container=demo_container, video_raw=video_raw, video_name=video_name)
     
     return (results,x)
